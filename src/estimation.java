@@ -1,54 +1,51 @@
 import java.util.Scanner;
 
-public class building {
-    double length;
-    double breadth;
-    double height;
-    double area;
-    double v1;
-    double v2;
-    double v3;
-    double v4;
-    double v5;
-    double mortarV;
-    double dryV;
-    double bricks;
-    double cement;
-    double sand;
+public class estimation {
+    float length,breadth,height,area,v1,v2,v3,v4,v5,mortarV,dryV;
+    float bricks;
+    int cement;
+    int sand;
     void area(){
         area = length*breadth;
         System.out.println("Area of site" + area + "sq m");
     }
     void bricks(){
+        //v1 = volume of blockwork
         v1 = length*breadth*height;
-        v2 = 0.1*0.1*0.2;
+        //v2 = volume of one brick with mortar
+        v2 = (float) (0.1*0.1*0.2);
         bricks = v1/v2;
         System.out.println("Number of bricks required is" + bricks);
     }
     void cement(){
-        v3 = 0.09*0.09*0.19;
+        //v3 = volume of one brick without mortar
+        v3 = (float) (0.09*0.09*0.19);
+        //v4 = volume of blockwork  without mortar
         v4 = bricks*v3;
+        //v5 = volume of blockwork with mortar
         v5 = bricks*v2;
+        //mortarV = wet volume of mortar
         mortarV = v5 - v4;
-        dryV = mortarV * 1.33;
-        cement = (dryV * 1440)/250;
+        //dryV = dry volume of mortar
+        dryV = (float) (mortarV * 1.33);
+        cement = (int) ((dryV * 1440)/250);
         System.out.println("Quantity of cement required is" + cement + "bags");
     }
     void sand(){
-        sand = (dryV*4)/5;
+        sand = (int) ((dryV*4)/5);
         System.out.println("Quantity of sand required is" + sand + "cum");
     }
 }
- class estimation{
+ class boq{
     public static void main(String[] args) {
-        building home = new building();
+        estimation home = new estimation();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the length");
-         home.length = sc.nextDouble();
+         home.length =  sc.nextFloat();
         System.out.println("Enter the breath");
-        home.breadth = sc.nextDouble();
+        home.breadth = sc.nextFloat();
         System.out.println("Enter the height");
-        home.height =  sc.nextDouble();
+        home.height =  sc.nextFloat();
         home.area();
         home.bricks();
         home.cement();
